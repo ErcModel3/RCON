@@ -1,0 +1,20 @@
+# IDE/Env related
+.idea/
+.venv/
+venv/
+
+.DS_Store
+.env
+
+# Flask related
+*.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Later stuff
+terraria.md
