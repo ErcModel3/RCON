@@ -14,8 +14,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     load_dotenv(".env")
 
-    @app.route('/hello')
-    def hello():
-        return "Hello world"
+    from . import blueprint
+    app.register_blueprint(blueprint.bp)
 
     return app
