@@ -16,7 +16,7 @@ def create_app():
     app = Flask(__name__)
     load_dotenv(".env")
 
-    from . import routes
+    from . import routes # pylint: disable=import-outside-toplevel
     app.register_blueprint(routes.bp)
 
     return app
