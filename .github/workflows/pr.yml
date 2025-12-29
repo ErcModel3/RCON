@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pylint-result: ${{ steps.pylint.outputs.result }}
     steps:
       - uses: actions/checkout@v4
       
@@ -19,15 +21,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint
           pip install -r requirements.txt
-
         
       - name: Run pylint
         id: pylint
         run: |
-          OUTPUT=$(pylint $(git ls-files '*.py') 2>&1) || true
+          set +e
+          OUTPUT=$(pylint $(git ls-files '*.py') 2>&1)
+          EXIT_CODE=$?
+          set -e
+          
+          echo "Pylint Output"
+          echo "$OUTPUT"
+          
           echo "result<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" | tail -20 >> $GITHUB_OUTPUT
+          if [ -z "$OUTPUT" ] || [ $EXIT_CODE -eq 0 ]; then
+            echo "No errors found" >> $GITHUB_OUTPUT
+          else
+            echo "$OUTPUT" | tail -20 >> $GITHUB_OUTPUT
+          fi
           echo "EOF" >> $GITHUB_OUTPUT
+          
+          exit $EXIT_CODE
 
   SendDiscordWebhook:
     runs-on: ubuntu-latest
