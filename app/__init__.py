@@ -1,20 +1,22 @@
-# References:
-# https://flask.palletsprojects.com/en/stable/patterns/appfactories/
-# https://www.geeksforgeeks.org/python/__init__-in-python/
-# https://medium.com/@ferrohardian/application-factory-pattern-starting-your-flask-project-
-
-# This __init__ file is an application factory, it is a python constructor file and should be used that way
+"""
+https://flask.palletsprojects.com/en/stable/patterns/appfactories/
+https://www.geeksforgeeks.org/python/__init__-in-python/
+https://medium.com/@ferrohardian/application-factory-pattern-starting-your-flask-project-
+"""
+# This __init__ file is an application factory
 
 import os
-
 from flask import Flask
 from flask.cli import load_dotenv
 
-def create_app(test_config=None):
+def create_app():
+    """
+    Main create app function, used as a constructor
+    """
     app = Flask(__name__)
     load_dotenv(".env")
 
-    from . import blueprint
-    app.register_blueprint(blueprint.bp)
+    from . import routes
+    app.register_blueprint(routes.bp)
 
     return app
