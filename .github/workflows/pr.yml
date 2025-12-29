@@ -1,7 +1,7 @@
 name: PR
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs:
   build:
@@ -22,11 +22,17 @@ jobs:
 
         
       - name: Run pylint
+        id: pylint
         run: |
-          pylint ./app/
+          OUTPUT=$(pylint $(git ls-files '*.py') 2>&1) || true
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" | tail -20 >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
   SendDiscordWebhook:
     runs-on: ubuntu-latest
+    needs: build
+    if: always()
     steps:
       - name: Discord notification
         env:
@@ -36,6 +42,11 @@ jobs:
           args: |
             **PR** - **${{ github.event.pull_request.title }}**
             ${{ github.actor }} has raised a pull request!
+            
+            Pylint result:
+            ```
+            ${{ needs.build.outputs.pylint-result }}
+            ```
 
             ${{ github.event.pull_request.html_url }}
             <@987695835678662666>
