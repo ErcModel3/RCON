@@ -17,6 +17,6 @@ def create_app():
     load_dotenv(".env")
 
     from . import routes # pylint: disable=import-outside-toplevel
-    app.register_blueprint(routes.bp)
+    app.register_blueprint(routes.rcon)
 
     return app
