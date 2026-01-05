@@ -2,7 +2,7 @@
 A remote console flask web-app for minecraft servers
 
 ### Development
-To run the development server enter `flask --app hello run` from the project root after installing all dependencies in `requirements.txt` by using `pip install -r requirements.txt`
+To run the development server enter `flask --app app run` from the project root after installing all dependencies in `requirements.txt` by using `pip install -r requirements.txt`
 
 When developing on this repo you'll need to create a `.env` file, there's a `.env.example` file that should look something like this:
 ```
