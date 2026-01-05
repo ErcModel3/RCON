@@ -21,7 +21,7 @@ def login():
     else:
         return post_login()
 
-@rcon.post('logout')
+@rcon.post('/logout')
 def logout():
     return "logout page"
 
@@ -36,4 +36,4 @@ def get_login():
     return "get login"
     
 def post_login():
-    
+    return "post login"
