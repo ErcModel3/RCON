@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Da Rasta RCON App</title>
+        <link rel="icon" href="../static/rasta.jpeg">
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav>
+            <ul>
+                <select gameserver="gameserver">
+                    <option value="terraria">Terraria</option>
+                    <option value="terraria-modded">Terraria-Modded</option>
+                    <option value="minecraft">Minecraft</option>
+                    <option value="minecraft">Minecraft-Modded</option>
+                </select>
+                
+                <a href="#" class="split">Status</a>
+            </ul>
+        </nav>
+        
+        <div id="content"> {% block content %}{% endblock %} </div>
+    </body>
+</html>

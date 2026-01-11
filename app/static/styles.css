@@ -1,0 +1,55 @@
+/* something something css */
+html
+
+nav{
+    background-color: #333;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    margin: auto;
+}
+
+nav select{
+    padding: 10px 10px;
+}
+
+nav a{
+    padding: 10px 10px;
+
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    
+    text-decoration: none;
+    font-size: 17px;
+}
+
+nav a:hover{
+    color: black;
+    background-color: #ddd;
+}
+
+nav a:active {
+    color: white;
+    background-color: #04AA6D;
+}
+
+nav a.status{
+    float: right;
+    color: white;
+    background-color: #04AA6D;
+}
+
+nav a.split{
+    float: right;
+    color: white;
+    background-color: #04AA6D;
+}
+
+nav a.split:hover{
+    color: black;
+    background-color: #ddd;
+}
+
+.console{
+    font-family: monospace;
+}

@@ -5,15 +5,12 @@ https://www.geeksforgeeks.org/python/flask-blueprints/
 https://flask.palletsprojects.com/en/stable/quickstart/#routing
 """
 
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template 
 
 rcon = Blueprint('blueprint', __name__)
 
-@rcon.get('/')
-def index():
-    return "Index page"
-
 # Combined html api requests should be done using rcon.route()
+@rcon.get('/')
 @rcon.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
@@ -25,6 +22,10 @@ def login():
 def logout():
     return "logout page"
 
+@rcon.route('/console')
+def console():
+    return render_template ("console.j2")
+
 @rcon.route('/hello')
 def hello():
     """
@@ -33,7 +34,8 @@ def hello():
     return "Hello world"
 
 def get_login():
-    return "get login"
+    return render_template ("base.html")
+    # return "get login"
     
 def post_login():
     return "post login"
