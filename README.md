@@ -1,7 +1,21 @@
 # RCON
 A remote console flask web-app for minecraft servers
 
-### Development
+## Development
+### Linting
+We're trying to code clean, so in the pr action `.github/workflows/pr.yaml` there is a reference to pylint and djlint for python and html (.j2 templates).
+
+To run these locally do:
+```
+# For pylint
+(venv) alex@pc:~/repos/RCON$ pylint app
+
+# For djlint
+(venv) alex@pc:~/repos/RCON$ djlint app/templates/ --profile=jinja
+```
+
+
+### Running the app in dev mode
 To run the development server enter `flask --app app run` from the project root after installing all dependencies in `requirements.txt` by using `pip install -r requirements.txt`
 
 When developing on this repo you'll need to create a `.env` file, there's a `.env.example` file that should look something like this:

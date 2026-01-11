@@ -1,0 +1,5 @@
+# https://djlint.com/docs/languages/jinja/
+# this is a config file
+
+[tool.djlint]
+profile="jinja"
